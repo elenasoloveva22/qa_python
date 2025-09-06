@@ -56,3 +56,14 @@ class TestBooksCollector:
         collect.add_book_in_favorites('Шерлок Холм')
         collect.delete_book_from_favorites('Шерлок Холм')
         assert len(collect.favorites) == 0
+
+    def test_get_books_genre_positive_result(self, collect):
+        collect.add_new_book('Война и мир')
+        collect.set_book_genre('Война и мир', 'Классика')
+        assert collect.get_books_genre() == {'Война и мир': 'Классика'}, 'Жанр книги не соответствует ожидаемому'
+
+    # Позитивная проверка для get_list_of_favorites_books
+    def test_get_list_of_favorites_books_positive_result(self, collect):
+        collect.add_new_book('Преступление и наказание')
+        collect.add_book_in_favorites('Преступление и наказание')
+        assert collect.get_list_of_favorites_books() == ['Преступление и наказание'], 'Книга не добавлена в избранное' 
